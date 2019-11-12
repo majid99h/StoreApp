@@ -1,0 +1,14 @@
+<app-navbar></app-navbar>
+
+<div class="row">
+    <div class="sperator left">
+        <div class="list-group">
+            <a [routerLink]="['/ProductByCategory', cat.CategoryName]" routerLinkActive="active" class="list-group-item list-group-item-action" *ngFor="let cat of allCategory">
+                    {{ cat.CategoryName }}
+            </a>
+        </div>
+    </div>
+    <div class="sperator right">
+        <router-outlet></router-outlet>
+    </div>
+</div>

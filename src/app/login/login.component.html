@@ -1,0 +1,24 @@
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+
+        <div class="fadeIn first">
+            KClick
+        </div>
+
+        <!-- Login Form -->
+        <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
+            <input type="text" id="login" [(ngModel)]="user.UserName" class="fadeIn second" name="UserName" required #username="ngModel" placeholder="login">
+            <input type="password" id="password" [(ngModel)]="user.Password" class="fadeIn third" required name="Password" #password="ngModel" placeholder="password">
+
+            <input type="submit" class="fadeIn fourth" [disabled]="!loginForm.form.valid" value="Log In">
+            <div id="formFooter">
+                <div *ngIf="!username.valid && username.touched" class="alert alert-danger">
+                    User Name is required
+                </div>
+                <div *ngIf="!password.valid && password.touched" class="alert alert-danger">
+                    Password is required
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
