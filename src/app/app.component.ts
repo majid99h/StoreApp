@@ -1,6 +1,8 @@
+import { AuthenticationService } from './appSerives/AuthenticationService';
 import { BaseResponse } from './Interface/BaseResponse';
 import { CategoryService } from './appSerives/categoryservice';
 import { Component, OnInit } from '@angular/core';
+import { User } from './Model/user';
 
 
 @Component({
@@ -12,12 +14,24 @@ export class AppComponent implements OnInit {
   title = 'Klick';
   allCategory: [];
   errorMessage: any;
-  constructor(private categoryService: CategoryService) {
+  
+  user: User = new User();
+  constructor(private categoryService: CategoryService, private authenticationService: AuthenticationService) {
   }
   ngOnInit() {
     this.LoadCategory();
+    this.getUser();
+    
   }
-  
+  getUser() {
+    this.authenticationService.currentUser.subscribe(
+      (currentUser) => {
+        this.user = currentUser;
+      }
+    )
+
+
+  }
   LoadCategory() {
     this.categoryService.getAllCategory().subscribe(
       (response: BaseResponse) => {

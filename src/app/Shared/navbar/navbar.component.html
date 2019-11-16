@@ -3,21 +3,23 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
 
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="!IsUser">
                 <a class="nav-link" routerLink="/Register" routerLinkActive="active">Register</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="!IsUser">
                 <a class="nav-link" routerLink="/Login" routerLinkActive="active">Login</a>
             </li>
 
 
             <li class="nav-item dropdown" appUsermenu #r="appUsermenu">
                 <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            User Name
-          </a>
+                  {{user?.UserName}}
+                 
+            </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown" [ngClass]="{'show':r.isOpen}">
-                    <a class="dropdown-item" routerLink="/Product" routerLinkActive="active">Manage Product</a>
-                    <a class="dropdown-item" routerLink="/Order" routerLinkActive="active">Manage Order</a>
+                    <a *ngIf="(user?.Role == 'admin' && IsUser)" class="dropdown-item" routerLink="/Product" routerLinkActive="active">Manage Product</a>
+                    <a *ngIf="(user?.Role == 'admin' && IsUser)" class="dropdown-item" routerLink="/Order" routerLinkActive="active">Manage Order</a>
+                    <a *ngIf="IsUser" class="dropdown-item" (click)="onLogOut()">Log Out</a>
                     <div class="dropdown-divider"></div>
 
                 </div>
@@ -25,7 +27,7 @@
 
         </ul>
 
-        <button type="button" class="btn btn-default btn-sm" (click)="onCartChange()">
+        <button *ngIf="(user?.Role != 'admin')" type="button" class="btn btn-default btn-sm" (click)="onCartChange()">
             <i class="fa" style="font-size:24px">&#xf07a;</i>
               <span class='badge badge-warning' id='lblCartCount'> {{cartCount}} </span>
           </button>

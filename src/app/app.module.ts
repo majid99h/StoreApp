@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ShoppingModule } from './Shop/shopping.module';
+import { OrdercompleteComponent } from './ordercomplete/ordercomplete.component';
 
 
 
@@ -17,6 +18,7 @@ import { ShoppingModule } from './Shop/shopping.module';
     AppComponent,
     RegisterComponent,
     LoginComponent,
+    OrdercompleteComponent,
     
     
   ],
